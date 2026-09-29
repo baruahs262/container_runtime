@@ -1,0 +1,10 @@
+# A small Alpine image with curl and jq, built by crt.
+# Needs network access to dl-cdn.alpinelinux.org for the apk step.
+FROM alpine:3.20
+LABEL org.example.maintainer="crt"
+ENV APP_HOME=/srv/app
+RUN apk add --no-cache curl jq
+WORKDIR $APP_HOME
+COPY webapp/ ./
+RUN chmod +x serve.sh && rm -f /etc/motd
+CMD ["./serve.sh"]

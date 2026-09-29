@@ -1,0 +1,7 @@
+# Scratch image holding only the static crt-stress workload.
+# Build from the repo root after `make build`:
+#   crt build -t stress -f examples/Buildfile.stress bin
+FROM scratch
+COPY crt-stress /bin/
+ENV PATH=/bin
+CMD ["crt-stress", "-exit", "0"]
